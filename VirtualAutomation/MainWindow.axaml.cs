@@ -189,7 +189,7 @@ public class DiagramAutomationPeer : ControlAutomationPeer
 
         foreach (var entity in _entities)
         {
-            newChildren.Add(new EntityAutomationPeer(entity, this));
+            newChildren.Add(new EntityAutomationPeer(Owner, entity, this));
         }
 
         _childrenValid = true;
