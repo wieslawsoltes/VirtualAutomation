@@ -134,7 +134,7 @@ public class EntityAutomationPeer : AutomationPeer
     protected override Rect GetBoundingRectangleCore()
     {
         // TODO:
-        return default;
+        return _entity.Bounds;
     }
 
     // Implement other necessary methods and properties, including any pattern support
