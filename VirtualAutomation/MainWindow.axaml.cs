@@ -148,7 +148,7 @@ public class DiagramAutomationPeer : ControlAutomationPeer
     {
         _entities = new List<Entity>
         {
-           new Entity("Line", new Rect(0, 0, 100, 100)),
+           new Entity("Ellipse", new Rect(0, 0, 100, 100)),
            new Entity("Rectangle", new Rect(200, 0, 70, 70)),
            new Entity("Path", new Rect(0, 200, 50, 50)),
         };
