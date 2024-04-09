@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Avalonia;
 using Avalonia.Automation.Peers;
 using Avalonia.Controls;
+using Avalonia.VisualTree;
 
 namespace VirtualAutomation;
 
@@ -21,11 +22,13 @@ public class Entity
 
 public class EntityAutomationPeer : AutomationPeer
 {
+    private readonly Control _panel;
     private readonly Entity _entity;
     private AutomationPeer? _parent;
 
-    public EntityAutomationPeer(Entity entity, AutomationPeer parent)
+    public EntityAutomationPeer(Control panel, Entity entity, AutomationPeer parent)
     {
+        _panel = panel;
         _entity = entity;
         _parent = parent;
     }
@@ -134,7 +137,19 @@ public class EntityAutomationPeer : AutomationPeer
     protected override Rect GetBoundingRectangleCore()
     {
         // TODO:
-        return _entity.Bounds;
+        //return _entity.Bounds;
+        
+        var root = _panel.GetVisualRoot();
+
+        if (root is not Visual rootVisual)
+            return default;
+
+        var transform = _panel.TransformToVisual(rootVisual);
+
+        if (!transform.HasValue)
+            return default;
+
+        return new Rect(_entity.Bounds.Size).TransformToAABB(transform.Value);
     }
 
     // Implement other necessary methods and properties, including any pattern support
