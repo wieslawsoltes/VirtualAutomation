@@ -71,7 +71,7 @@ public class EntityAutomationPeer : AutomationPeer
     protected override bool IsControlElementCore()
     {
         // ignored
-        return false;
+        return true;
     }
 
     protected override bool IsEnabledCore()
