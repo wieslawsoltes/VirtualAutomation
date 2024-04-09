@@ -9,6 +9,6 @@
         WindowStartupLocation="CenterScreen"
         Title="VirtualAutomation">
     <virtualAutomation:DiagramViewer Background="LightGray"
-                                     Width="300"
-                                     Height="300" />
+                                     Width="400"
+                                     Height="400" />
 </Window>
