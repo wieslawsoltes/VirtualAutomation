@@ -149,7 +149,7 @@ public class EntityAutomationPeer : AutomationPeer
         if (!transform.HasValue)
             return default;
 
-        return new Rect(_entity.Bounds.Size).TransformToAABB(transform.Value);
+        return _entity.Bounds.TransformToAABB(transform.Value);
     }
 
     // Implement other necessary methods and properties, including any pattern support
