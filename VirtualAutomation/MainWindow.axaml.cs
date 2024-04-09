@@ -159,18 +159,26 @@ public class DiagramAutomationPeer : ControlAutomationPeer
         return AutomationControlType.List;
     }
 
+    private IReadOnlyList<AutomationPeer>? _children;
+    private bool _childrenValid;
+    
     //protected override List<AutomationPeer> GetChildrenCore()
     protected override IReadOnlyList<AutomationPeer> GetOrCreateChildrenCore()
     {
-        // TODO: Cache children
-        var children = new List<AutomationPeer>();
+        var children = _children ?? Array.Empty<AutomationPeer>();
+
+        if (_childrenValid)
+            return children;
+
+        var newChildren = new List<AutomationPeer>();
 
         foreach (var entity in _entities)
         {
-            children.Add(new EntityAutomationPeer(entity, this));
+            newChildren.Add(new EntityAutomationPeer(entity, this));
         }
 
-        return children;
+        _childrenValid = true;
+        return _children = newChildren;
     }
 }
 
