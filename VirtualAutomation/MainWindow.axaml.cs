@@ -159,8 +159,8 @@ public class DiagramAutomationPeer : ControlAutomationPeer
         return AutomationControlType.List;
     }
 
-    // Override methods as necessary, similar to the virtual item peer
-    protected override List<AutomationPeer> GetChildrenCore()
+    //protected override List<AutomationPeer> GetChildrenCore()
+    protected override IReadOnlyList<AutomationPeer> GetOrCreateChildrenCore()
     {
         // TODO: Cache children
         var children = new List<AutomationPeer>();
